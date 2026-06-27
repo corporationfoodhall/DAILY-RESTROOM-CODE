@@ -3,51 +3,92 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Corporation Food Hall - Restroom Code</title>
+<title>Corporation Food Hall - Restroom Codes</title>
 
 <style>
+*{box-sizing:border-box}
+
 body{
-    margin:0;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    background:#2d2d2d;
-    font-family:Arial,sans-serif;
-    color:white;
+  margin:0;
+  min-height:100vh;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#1f1f1f;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:24px;
 }
 
 .card{
-    width:90%;
-    max-width:500px;
-    padding:40px;
-    text-align:center;
-    background:#1f1f1f;
-    border-radius:20px;
-    box-shadow:0 15px 40px rgba(0,0,0,.45);
+  width:100%;
+  max-width:620px;
+  background:#121212;
+  border:1px solid #4a3b1f;
+  border-radius:24px;
+  padding:32px;
+  box-shadow:0 20px 60px rgba(0,0,0,.55);
+  text-align:center;
+}
+
+.brand{
+  color:#d4af37;
+  font-size:18px;
+  letter-spacing:4px;
+  font-weight:bold;
+  margin-bottom:10px;
 }
 
 h1{
-    margin:0;
-    font-size:42px;
+  margin:0;
+  font-size:34px;
+  letter-spacing:1px;
 }
 
 #day{
-    margin-top:10px;
-    color:#bbb;
-    font-size:22px;
+  color:#d4af37;
+  font-size:22px;
+  margin:16px 0 28px;
+  font-weight:bold;
 }
 
-#code{
-    font-size:90px;
-    font-weight:bold;
-    margin:40px 0;
-    letter-spacing:8px;
+.section{
+  background:#1e1e1e;
+  border:1px solid #3d3d3d;
+  border-radius:18px;
+  padding:22px;
+  margin-bottom:22px;
+}
+
+.label{
+  font-size:24px;
+  font-weight:bold;
+  margin-bottom:14px;
+}
+
+.code{
+  background:#0b0b0b;
+  border:1px solid #d4af37;
+  border-radius:14px;
+  padding:18px 10px;
+  font-family:monospace;
+  font-size:34px;
+  font-weight:bold;
+  letter-spacing:1px;
+  word-break:break-word;
 }
 
 .footer{
-    color:#888;
-    font-size:16px;
+  color:#aaa;
+  font-size:15px;
+  margin-top:24px;
+  line-height:1.5;
+}
+
+@media(max-width:480px){
+  .card{padding:24px 16px}
+  h1{font-size:28px}
+  .code{font-size:28px}
 }
 </style>
 </head>
@@ -56,36 +97,76 @@ h1{
 
 <div class="card">
 
-<h1>🚻 Restroom Code</h1>
+  <div class="brand">CORPORATION FOOD HALL</div>
 
-<div id="day"></div>
+  <h1>Today's Restroom Codes</h1>
 
-<div id="code"></div>
+  <div id="day"></div>
 
-<div class="footer">
-Corporation Food Hall<br>
-Customers Only
-</div>
+  <div class="section">
+    <div class="label">Men's Restroom</div>
+    <div id="mensCode" class="code"></div>
+  </div>
+
+  <div class="section">
+    <div class="label">Women's Restroom</div>
+    <div id="womensCode" class="code"></div>
+  </div>
+
+  <div class="footer">
+    Customers Only<br>
+    Thank You
+  </div>
 
 </div>
 
 <script>
 
-const codes={
-Sunday:"523518248#",
-Monday:"657879760#",
-Tuesday:"123834349#",
-Wednesday:"498723957#",
-Thursday:"185668885#",
-Friday:"709772150#",
-Saturday:"000608739#"
+/* EDIT CODES HERE ONLY */
+
+const codes = {
+  Sunday: {
+    mens: "523518248#",
+    womens: ""
+  },
+  Monday: {
+    mens: "657879760#",
+    womens: ""
+  },
+  Tuesday: {
+    mens: "123834349#",
+    womens: ""
+  },
+  Wednesday: {
+    mens: "498723957#",
+    womens: ""
+  },
+  Thursday: {
+    mens: "185668885#",
+    womens: ""
+  },
+  Friday: {
+    mens: "709772150#",
+    womens: ""
+  },
+  Saturday: {
+    mens: "000608739#",
+    womens: ""
+  }
 };
 
-const today=new Date().toLocaleDateString("en-US",{weekday:"long"});
+/* DO NOT EDIT BELOW THIS LINE */
 
-document.getElementById("day").textContent=today;
+const today = new Date().toLocaleDateString("en-US", { weekday: "long" });
 
-document.getElementById("code").textContent=codes[today];
+function formatCode(code){
+  if(!code) return "NOT SET";
+  return code.replace("#", " #").replace(/(\d{3})(?=\d)/g, "$1 ");
+}
+
+document.getElementById("day").textContent = today;
+document.getElementById("mensCode").textContent = formatCode(codes[today].mens);
+document.getElementById("womensCode").textContent = formatCode(codes[today].womens);
 
 </script>
 
