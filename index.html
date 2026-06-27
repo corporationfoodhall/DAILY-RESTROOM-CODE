@@ -1,1 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Corporation Food Hall - Restroom Code</title>
 
+<style>
+body{
+    margin:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:#2d2d2d;
+    font-family:Arial,sans-serif;
+    color:white;
+}
+
+.card{
+    width:90%;
+    max-width:500px;
+    padding:40px;
+    text-align:center;
+    background:#1f1f1f;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,.45);
+}
+
+h1{
+    margin:0;
+    font-size:42px;
+}
+
+#day{
+    margin-top:10px;
+    color:#bbb;
+    font-size:22px;
+}
+
+#code{
+    font-size:90px;
+    font-weight:bold;
+    margin:40px 0;
+    letter-spacing:8px;
+}
+
+.footer{
+    color:#888;
+    font-size:16px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>🚻 Restroom Code</h1>
+
+<div id="day"></div>
+
+<div id="code"></div>
+
+<div class="footer">
+Corporation Food Hall<br>
+Customers Only
+</div>
+
+</div>
+
+<script>
+
+const codes={
+Sunday:"1234",
+Monday:"2345",
+Tuesday:"3456",
+Wednesday:"4567",
+Thursday:"5678",
+Friday:"6789",
+Saturday:"7890"
+};
+
+const today=new Date().toLocaleDateString("en-US",{weekday:"long"});
+
+document.getElementById("day").textContent=today;
+
+document.getElementById("code").textContent=codes[today];
+
+</script>
+
+</body>
+</html>
